@@ -197,20 +197,19 @@ export function Footer() {
       title: 'Team Channels',
       icon: Trophy,
       links: [
-        { 
-          label: 'Facebook', 
-          href: 'https://www.facebook.com/devkant.konsam?mibextid=ZbWKwL', 
-          icon: Facebook 
+        {
+          label: 'Facebook',
+          href: 'https://www.facebook.com/devkant.konsam?mibextid=ZbWKwL',
+          icon: Facebook
         },
-        { 
-          label: 'Instagram', 
-          href: 'https://instagram.com/dev_since_1998?igshid=MzRlODBiNWFlZA==', 
-          icon: Instagram 
+        {
+          label: 'Instagram',
+          href: 'https://instagram.com/dev_since_1998?igshid=MzRlODBiNWFlZA==',
+          icon: Instagram
         },
       ],
     },
   ];
-
   const seasonStats = [
     { label: 'Race Wins', value: '12', icon: Trophy },
     { label: 'Podiums', value: '29', icon: Flag },
@@ -355,7 +354,8 @@ export function Footer() {
                   </div>
                   <ul className="space-y-3">
                     {section.links.map((link) => {
-                      const LinkIcon = link.icon;
+                      // Only get LinkIcon if it exists on the link object
+                      const LinkIcon = (link as any).icon; // Type assertion for now
                       return (
                         <li key={link.label}>
                           <a
@@ -364,6 +364,7 @@ export function Footer() {
                             rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
                             className="text-sm text-gray-400 hover:text-red-400 transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group/link"
                           >
+                            {/* Conditionally render icon if it exists */}
                             {LinkIcon && <LinkIcon className="w-4 h-4" />}
                             <span>{link.label}</span>
                             <span className="text-red-400 opacity-0 group-hover/link:opacity-100 transition-opacity">→</span>
@@ -489,8 +490,8 @@ export function Footer() {
                   {activeModal === 'policy' ? 'Race Policy & Copyright' : 'Team Terms & Conditions'}
                 </h2>
                 <p className="text-gray-400 font-mono text-sm tracking-wider">
-                  {activeModal === 'policy' 
-                    ? 'Intellectual Property Protection & Legal Rights' 
+                  {activeModal === 'policy'
+                    ? 'Intellectual Property Protection & Legal Rights'
                     : 'Usage Guidelines & Legal Agreements'}
                 </p>
               </div>
